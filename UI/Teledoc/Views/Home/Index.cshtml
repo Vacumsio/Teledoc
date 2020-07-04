@@ -1,0 +1,52 @@
+﻿@using Teledoc.Domain.Entities.Clients
+@using Teledoc.Domain.Entities.Founders
+
+@model IEnumerable<Client>
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<section>
+    <div class="container">
+        <a>Create New</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>id</td>
+                    <td>ClientsINN</td>
+                    <td>Name</td>
+                    <td>Organization</td>
+                    <td><a asp-controller="Home" asp-action="ClientsDetails">Учредители</a></td>
+                    <td>AddTime</td>
+                    <td>UpdateTime</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var client in Model)
+                {
+                <tr>
+                    <td></td>
+                    <td>@client.Id</td>
+                    <td>@client.ClientsINN</td>
+                    <td>@client.Name</td>
+                    <td>@client.Organization</td>
+                    <td>@client.FounderId</td>
+                    <td>@client.AddTime</td>
+                    <td>@client.UpdateTime</td>
+                    <td>
+                        <a asp-controller="Employees" asp-action="Edit" asp-route-id="@client.Id" class="btn btn-success">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a asp-controller="Employees" asp-action="Delete" asp-route-id="@client.Id" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

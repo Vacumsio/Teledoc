@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Teledoc.DAL\Teledoc.DAL.csproj" />
+    <ProjectReference Include="..\Teledoc.Interfaces\Teledoc.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
