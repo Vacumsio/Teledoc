@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Teledoc.DAL.Context;
 using Teledoc.Domain.Entities.Clients;
+using Teledoc.Domain.Entities.Founders;
 using Teledoc.Interfaces.Services;
 
 namespace Teledoc.Services.DataStore.InSQL
@@ -12,9 +14,12 @@ namespace Teledoc.Services.DataStore.InSQL
         private readonly TeledocDB _db;
         public SqlClientsData(TeledocDB db) => _db = db;
 
-        public IEnumerable<Client> Get() => _db.Clients;
+        public IEnumerable<Client> GetClients() => _db.Clients.Include(p=>p.Founder);
+        public IEnumerable<Founder> GetFounders() => _db.Founders;
 
-        public Client GetByID(int id) => _db.Clients.FirstOrDefault(e => e.Id == id);
+        public Client GetClientById(int id) => _db.Clients
+            .Include(p=>p.Founder)
+            .FirstOrDefault(e => e.Id == id);
 
         public int Add(Client Client)
         {

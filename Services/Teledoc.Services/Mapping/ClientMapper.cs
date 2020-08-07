@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Teledoc.Domain.Entities.Clients;
 using Teledoc.Domain.ViewModels;
@@ -14,15 +15,10 @@ namespace Teledoc.Services.Mapping
             ClientsINN = cl.ClientsINN,
             Name = cl.Name,
             Organization = cl.Organization,
-            Founder = cl.Founder.Surname,
+            Founder = cl.Founder?.Firstname,
         };
 
-        public static Client FromView(this ClientViewModel cl) => new Client
-        {
-            Id = cl.Id,
-            Name = cl.Name,
-            ClientsINN = cl.ClientsINN,
-            Organization =cl.Organization,
-        };
+        public static IEnumerable<ClientViewModel> ToView(this IEnumerable<Client> p) => p.Select(ToView);
+        
     }
 }

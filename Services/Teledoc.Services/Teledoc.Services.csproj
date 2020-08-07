@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Teledoc.Domain\Teledoc.Domain.csproj" />
     <ProjectReference Include="..\Teledoc.DAL\Teledoc.DAL.csproj" />
     <ProjectReference Include="..\Teledoc.Interfaces\Teledoc.Interfaces.csproj" />
   </ItemGroup>

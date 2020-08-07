@@ -19,7 +19,7 @@ namespace Teledoc.Services.Data
             InitializeFounder();
         }
 
-        public void InitializeClient()
+        private void InitializeClient()
         {
             var db = _db.Database;
             if (_db.Clients.Any()) return;
@@ -35,7 +35,7 @@ namespace Teledoc.Services.Data
             }
         }
 
-        public void InitializeFounder()
+        private void InitializeFounder()
         {
             var db = _db.Database;
             if (_db.Founders.Any()) return;
@@ -45,6 +45,7 @@ namespace Teledoc.Services.Data
                 var founders = TestData.Founders.ToList();
                 founders.ForEach(e => e.Id = 0);
                 _db.Founders.AddRange(founders);
+
 
                 _db.SaveChanges();
                 db.CommitTransaction();

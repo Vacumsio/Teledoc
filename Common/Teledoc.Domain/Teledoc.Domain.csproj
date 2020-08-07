@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ViewModels\ClientViewModel.cs~RF1038263.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
