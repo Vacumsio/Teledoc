@@ -15,7 +15,6 @@ namespace Teledoc.Services.Mapping
             ClientsINN = cl.ClientsINN,
             Name = cl.Name,
             Organization = cl.Organization,
-            Founder = cl.Founder?.Firstname,
         };
 
         public static IEnumerable<ClientViewModel> ToView(this IEnumerable<Client> p) => p.Select(ToView);

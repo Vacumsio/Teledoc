@@ -32,8 +32,8 @@ namespace Teledoc.Domain.Entities.Clients
         [Display(Name = "Время изменения")]
         public DateTime UpdateTime { get; set; }
 
-        public int FounderId { get; set; }
-        [ForeignKey(nameof(FounderId))]
-        public virtual Founder Founder { get; set; }
+        //public int FounderId { get; set; }
+        //[ForeignKey(nameof(FounderId))]
+        //public virtual Founder Founder { get; set; }
     }
 }

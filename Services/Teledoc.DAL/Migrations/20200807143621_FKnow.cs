@@ -32,33 +32,21 @@ namespace Teledoc.DAL.Migrations
                     Name = table.Column<string>(nullable: false),
                     Organization = table.Column<string>(nullable: false),
                     AddTime = table.Column<DateTime>(nullable: false),
-                    UpdateTime = table.Column<DateTime>(nullable: false),
-                    FounderId = table.Column<int>(nullable: false)
+                    UpdateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Clients_ClientFounder_FounderId",
-                        column: x => x.FounderId,
-                        principalTable: "ClientFounder",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clients_FounderId",
-                table: "Clients",
-                column: "FounderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "ClientFounder");
 
             migrationBuilder.DropTable(
-                name: "ClientFounder");
+                name: "Clients");
         }
     }
 }

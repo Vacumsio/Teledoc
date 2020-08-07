@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Teledoc.Domain.Entities.Clients;
 
 namespace Teledoc.Domain.ViewModels
 {
-    //[Obsolete("Abstract, dont't use",error:true)]
     public class ClientViewModel
     {
         [HiddenInput(DisplayValue = false)]
@@ -27,11 +27,10 @@ namespace Teledoc.Domain.ViewModels
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Длина типа должна быть от 2 до 100 символов")]
         [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Неверный формат данных")]
         public string Organization { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime AddTime { get; set; }
         [DataType(DataType.Date)]
         public DateTime UpdateTime { get; set; }
-        
-        public string Founder { get; set; }
     }
 }

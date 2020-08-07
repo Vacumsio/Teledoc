@@ -10,7 +10,7 @@ using Teledoc.DAL.Context;
 namespace Teledoc.DAL.Migrations
 {
     [DbContext(typeof(TeledocDB))]
-    [Migration("20200807143317_FKnow")]
+    [Migration("20200807143621_FKnow")]
     partial class FKnow
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,6 @@ namespace Teledoc.DAL.Migrations
                     b.Property<long>("ClientsINN")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("FounderId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,8 +46,6 @@ namespace Teledoc.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FounderId");
 
                     b.ToTable("Clients");
                 });
@@ -76,15 +71,6 @@ namespace Teledoc.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ClientFounder");
-                });
-
-            modelBuilder.Entity("Teledoc.Domain.Entities.Clients.Client", b =>
-                {
-                    b.HasOne("Teledoc.Domain.Entities.Founders.Founder", "Founder")
-                        .WithMany()
-                        .HasForeignKey("FounderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

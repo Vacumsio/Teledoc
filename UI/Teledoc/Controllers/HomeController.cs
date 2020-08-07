@@ -27,7 +27,7 @@ namespace Teledoc.Controllers
                 return NotFound();
             }
 
-            return View(client.ToView());
+            return View(client);
         }
 
         public IActionResult Edit(int? id)
@@ -38,20 +38,24 @@ namespace Teledoc.Controllers
             var client = _ClientsData.GetClientById((int)id);
             if (client is null) return NotFound();
 
-            return View(client);
+            return View(new ClientViewModel
+            {
+                Id = client.Id,
+                Name = client.Name,
+                ClientsINN = client.ClientsINN,
+                Organization = client.Organization,
+                UpdateTime = client.UpdateTime,
+                AddTime = client.AddTime
+            });
         }
         [HttpPost]
         public IActionResult Edit(ClientViewModel Model)
         {
-            if (Model is null)
-            {
-                throw new ArgumentNullException(nameof(Model));
-            }
-            if (!ModelState.IsValid)
-            {
-                return View(Model);
-            }
-            var client = new Client()
+            if (Model is null) throw new ArgumentNullException(nameof(Model));
+
+            if (!ModelState.IsValid) return View(Model);
+
+            var client = new Client
             {
                 Id = Model.Id,
                 Name = Model.Name,
@@ -59,17 +63,11 @@ namespace Teledoc.Controllers
                 Organization = Model.Organization,
                 AddTime = DateTime.Now,
                 UpdateTime = DateTime.Now
-                
             };
 
-            if (Model.Id == 0)
-            {
-                _ClientsData.Add(client);
-            }
-            else
-            {
-                _ClientsData.Edit(client);
-            }
+            if (Model.Id == 0) _ClientsData.Add(client);
+            else _ClientsData.Edit(client);
+
             _ClientsData.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -84,12 +82,14 @@ namespace Teledoc.Controllers
             {
                 return NotFound();
             }
-            return View(new ClientViewModel()
+            return View(new ClientViewModel
             {
                 Id = client.Id,
                 Name = client.Name,
                 Organization = client.Organization,
                 ClientsINN = client.ClientsINN,
+                UpdateTime = client.UpdateTime,
+                AddTime = client.AddTime
             });
         }
         [HttpPost]

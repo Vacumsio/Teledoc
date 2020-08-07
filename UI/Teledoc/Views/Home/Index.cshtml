@@ -1,43 +1,41 @@
-﻿@using Teledoc.Domain.Entities.Clients
+﻿@model IEnumerable<Teledoc.Domain.Entities.Clients.Client>
 
-@*@inject IEnumerable<Client> Client*@
 
 @{
-    ViewData["Title"] = "Главная";
+    ViewData["Title"] = "Index";
 }
 
-    <div class="container">
-        <a>Create New</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td></td>
-                    <td>ClientsINN</td>
-                    <td>Name</td>
-                    <td>Organization</td>
-                    <td>AddTime</td>
-                    <td>UpdateTime</td>
-                    <td><a asp-controller="Home" asp-action="ClientsDetails">Учредители</a></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var client in Model)
-                {
+<div class="container">
+    <a asp-action="Edit" class="btn btn-success">Create New</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>ClientsINN</td>
+                <td>Name</td>
+                <td>Organization</td>
+                <td>AddTime</td>
+                <td>UpdateTime</td>
+                <td><a asp-controller="Home" asp-action="ClientsDetails">Учредители</a></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
                 <tr>
                     <td>
                         <a asp-controller="Home" asp-action="ClientsDetails" asp-route-id="@client.Id">
                             <i class="fa fa-info-circle"></i>
                         </a>
                     </td>
-                    <td>@client.Id</td>
                     <td>@client.ClientsINN</td>
                     <td>@client.Name</td>
                     <td>@client.Organization</td>
                     <td>@client.AddTime</td>
                     <td>@client.UpdateTime</td>
-                    <td>@client.Founder</td>
+                    <td><a asp-controller="Home" asp-action="">Здесь будут учредители</a></td>
                     <td>
                         <a asp-controller="Home" asp-action="Edit" asp-route-id="@client.Id" class="btn btn-success">
                             <i class="fa fa-edit"></i>
@@ -47,7 +45,7 @@
                         </a>
                     </td>
                 </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>

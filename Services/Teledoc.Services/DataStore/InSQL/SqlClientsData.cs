@@ -14,11 +14,10 @@ namespace Teledoc.Services.DataStore.InSQL
         private readonly TeledocDB _db;
         public SqlClientsData(TeledocDB db) => _db = db;
 
-        public IEnumerable<Client> GetClients() => _db.Clients.Include(p=>p.Founder);
+        public IEnumerable<Client> GetClients() => _db.Clients;
         public IEnumerable<Founder> GetFounders() => _db.Founders;
 
         public Client GetClientById(int id) => _db.Clients
-            .Include(p=>p.Founder)
             .FirstOrDefault(e => e.Id == id);
 
         public int Add(Client Client)
